@@ -4,7 +4,82 @@ packages:
   #   - spec: @
   #     prefix: /usr
   #   buildable: False
+  # :
+  #   externals:
+  #   - spec: @
+  #     prefix: /usr
+  #   buildable: False
+  spdlog:
+    externals:
+    - spec: spdlog@1.9.2
+      prefix: /usr
+    buildable: False
+  librsync:
+    externals:
+    - spec: librsync@2.3.2
+      prefix: /usr
+    buildable: False
+  libjpeg-turbo:
+    externals:
+    - spec: libjpeg-turbo@2.1.0
+      prefix: /usr
+    buildable: False
+  libpng:
+    externals:
+    - spec: libpng@1.6.37
+      prefix: /usr
+    buildable: False
+  libxml2:
+    externals:
+    - spec: libxml2@2.9.12
+      prefix: /usr
+    buildable: False
+  cmake:
+    externals:
+    - spec: cmake@3.22.2
+      prefix: /usr
+    buildable: False
+  nasm:
+    externals:
+    - spec: nasm@2.15.05
+      prefix: /usr
+    buildable: False
+  openssl:
+    externals:
+    - spec: openssl@1.1.1n
+      prefix: /usr
+    buildable: False
+  ncurses:
+    externals:
+    - spec: ncurses@6.2
+      prefix: /usr
+    buildable: False
+  libsigsegv:
+    externals:
+    - spec: libsigsegv@2.13
+      prefix: /usr
+    buildable: False
+  pcre:
+    externals:
+    - spec: pcre@8.45
+      prefix: /usr
+    buildable: False
+  pkg-config:
+    externals:
+    - spec: pkg-config@0.29.2
+      prefix: /usr
+    buildable: False
+  xz:
+    externals:
+    - spec: xz@5.2.5
+      prefix: /usr
+    buildable: False
 
+  zlib:
+    externals:
+    - spec: zlib@1.2.11
+      prefix: /usr
+    buildable: False
   py-matplotlib:
     externals:
     - spec: py-matplotlib@3.5.1

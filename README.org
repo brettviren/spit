@@ -53,7 +53,7 @@ dependencies are added to ~packages.yaml~ with redirect to ~/usr~.
 sudo mkdir /usr/local/spit
 sudo chown $USER:@USER /usr/local/spit
 cd /usr/local/spit
-git clone git@github.com:brettviren/spit.git .
+git clone --recursive git@github.com:brettviren/spit.git .
 ./cycle.sh
 #+end_example
 

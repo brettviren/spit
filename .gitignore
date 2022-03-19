@@ -2,4 +2,5 @@
 spack
 view
 opt
+local
 __pycache__
