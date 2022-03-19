@@ -17,9 +17,12 @@ spack () {
 
 
 
-view=$spit/view
 
-spack view rm -a $view   || echo "it's okay"
-spack uninstall -ya spit || echo "it's okay"
+spack uninstall -ya spit || echo "Above error is okay"
 spack   install     spit
-spack view add -i $view spit
+
+spitview="$spit/view"
+if [ -d "$spitview" ] ; then
+    rm -rf "$spitview"
+fi
+spack view add -i "$spitview" spit 2>&1 | grep -v 'Warning:'

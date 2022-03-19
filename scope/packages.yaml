@@ -9,11 +9,6 @@ packages:
   #   - spec: @
   #     prefix: /usr
   #   buildable: False
-  spdlog:
-    externals:
-    - spec: spdlog@1.9.2
-      prefix: /usr
-    buildable: False
   librsync:
     externals:
     - spec: librsync@2.3.2
