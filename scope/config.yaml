@@ -1,0 +1,8 @@
+config:
+  install_tree:
+    root: $spit/opt
+    projections:
+      all: "${PACKAGE}-${VERSION}-${HASH}"
+  # build_stage: /home/$user/tmp/builds
+  # test_stage: /home/$user/tmp/tests
+  

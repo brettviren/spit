@@ -1,0 +1,62 @@
+#+title: Simple Personal Installation Tool
+
+This installs packaged source.
+
+Spack packages installed today.
+
+Time is precious, savor.
+
+So, private I take.
+
+* What?
+
+This package satisfies some narrow requirements of mine.
+
+- Install software of versions more recent than in Debian testing.
+
+- Minimize non-OS dependencies.
+
+- Allow control of build options.
+
+- Easy configuration.
+
+- Easy to add new packages and upgrade existing.
+
+- Minimal user environment mangling.
+
+- Minimal commands to produce. 
+
+- Can apply to arbitrary packages.
+
+This rules out a lot of options.  I've tried:
+
+- Nix/Guix :: These always ultimately defeat me due to the configuration language.
+- Debian sid :: Does no have all packages and has a delay for new versions.
+- DIY package manager :: I have developed a few but as I have better understood the problem space I realized I was doomed to reinvent Spack.
+
+* Spack?
+
+This uses [[https://spack.readthedocs.io][Spack]] in a narrow, controlled way which will not conflict
+with use of Spack for other reasons.  It provides a Spack /scope/ and
+package repository to install into its own area and from which a Spack
+view is built.  It does not utilize Spack shell environment management
+in any way.
+
+Spack can build almost an entire OS but my goal is to leverage the
+native OS as much as possible.  Thus as packages are included through
+dependencies in the main ~spit~ bundle package their top-most
+dependencies are added to ~packages.yaml~ with redirect to ~/usr~.
+
+* Installation
+
+#+begin_example
+sudo mkdir /usr/local/spit
+sudo chown $USER:@USER /usr/local/spit
+cd /usr/local/spit
+git clone git@github.com:brettviren/spit.git .
+./cycle.sh
+#+end_example
+
+* Todo
+
+

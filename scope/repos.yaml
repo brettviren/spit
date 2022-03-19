@@ -1,0 +1,4 @@
+repos:
+  - ${spit}/scope/repo
+  - $spack/var/spack/repos/builtin
+  
