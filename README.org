@@ -83,7 +83,12 @@ git clone --recursive git@github.com:brettviren/spit.git .
 
 * Usage
 
-Add ~/usr/local/spit/view/bin~ to ~PATH~.
+#+begin_example
+fish_add_path -U /usr/local/spit/view/bin
+#+end_example
+
+Or, otherwise put spit's ~view/bin/~ dir into your ~$PATH~.
+
 
 * Updating
 
