@@ -1,0 +1,13 @@
+diff --git a/xapers/lib/xapers/nci/ui.py b/xapers/lib/xapers/nci/ui.py
+index 6282694..71e8d87 100644
+--- a/xapers/lib/xapers/nci/ui.py
++++ b/xapers/lib/xapers/nci/ui.py
+@@ -67,7 +67,7 @@ class UI():
+             unhandled_input=self.keypress,
+             handle_mouse=False,
+             )
+-        self.mainloop.screen.set_terminal_properties(colors=88)
++        self.mainloop.screen.set_terminal_properties(colors=256)
+ 
+         if not cmd:
+             cmd = ['search', 'tag:new']

@@ -24,7 +24,7 @@ This package satisfies some narrow requirements of mine:
 
 - Easy to add new packages and upgrade existing.
 
-- Minimal user environment mangling.
+- Minimal user environment mangling (no more than is needed to use ~/usr/local~).
 
 - Minimal commands to produce. 
 
@@ -63,31 +63,82 @@ are only tested in spit's scope.
 
 One core aspect of spit is to use Spack only to build the top-level
 packages and use the OS packages for the rest.  Thus, it is up to the
-user to assure sufficient OS packages are installed.  A likely
-incomplete set of packages for Debian is:
+user to assure sufficient OS packages are installed.  A likely but
+perhaps incomplete set of packages for Debian can be installed with:
 
 #+begin_example
-apt install \
-aspell bison cmake curl dbus dbus-x11 flex fontconfig libcairo2-dev libcanberra-dev libdbus-1-dev libfontconfig-dev libfreetype6-dev libgcrypt20-dev libgdk-pixbuf2.0-dev libgif-dev libgl1-mesa-dev libglib2.0-dev libharfbuzz-dev libjpeg62-turbo-dev liblcms2-dev libpango1.0-dev libpcre3-dev libperl-dev libpng-dev librsync-dev libsigsegv2 libstartup-notification0-dev libtiff-dev libtiff-dev libx11-dev libx11-xcb-dev libxcb-cursor-dev libxcb-util-dev libxcursor-dev libxi-dev libxinerama-dev libxkbcommon-dev libxkbcommon-x11-dev libxml2-dev libxpm-dev libxpm-dev libxrandr-dev openssl python3-dev python3-matplotlib xz-utils zlib1g-dev
+apt-get build-dep kitty herbstluftwm emacs lemonbar rofi weechat perl  
+apt-get install aspell curl dbus dbus-x11 fontconfig lua5.4
 #+end_example
 
-To install the top-level packages pick some location writable by your user:
+Then, to install the top-level packages from source using spit, pick
+some location writable by your user and:
 
 #+begin_example
 sudo mkdir /usr/local/spit
 sudo chown $USER:@USER /usr/local/spit
 cd /usr/local/spit
 git clone --recursive git@github.com:brettviren/spit.git .
-./cycle.sh
+./spit cycle
 #+end_example
 
-* Usage
+* Use the install
 
 Add ~/usr/local/spit/view/bin~ to ~PATH~.
 
-* Updating
+* Update the install
 
-Add/edit the ~package.py~'s, return ~cycle.sh~.
+The ~spit~ command is a wrapper around ~spack~ to run inside spit's scope.
 
+** Make a new package
 
+#+begin_example
+./spit create [-t template] <name>
+#+end_example
 
+** Update an existing package
+
+#+begin_example
+./spit checksum <name>
+./spit edit <name>
+#+end_example
+
+The only tricky bit with the whole spit strategy is that it relies on
+"slicing" off Spack's dependency tree by redirecting the line of
+slicing to the OS by entries in [[./scope/packages.yaml]].  This slice
+line is somewhat brittle as it is defined in terms of both package and
+a concrete version.  When adding a new package, increasing the version
+of an existing package or perhaps even pulling on Spack's git clone
+the slice line may shift.
+
+In any case, to manage ~packages.yaml~ one must discover the versions
+that the Spack concretization chooses.  After providing an initial
+~package.py~ for package ~<name>~ you can discover package name and
+versions to put into ~packages.yaml~ with:
+
+#+begin_example
+./spit spec <name>
+#+end_example
+
+Focus on just the top-level dependencies one layer below the ~<name>~.
+Add each to ~packages.yaml~ with the version listed and try to install
+it:
+
+#+begin_example
+./spit install <name>
+#+end_example
+
+Check that only those packages from Spack are wanted are picked up.
+
+** Refresh the install and view
+
+#+begin_example
+./spit cycle
+#+end_example
+
+* Todo
+
+- [ ] Generate ~packages.yaml~ from the Spack spec.
+- [ ] Package [[https://xapian.org/docs/install.html][xapian-bindings]] as ~py-xapian~
+  - [ ] Build Python via Spack and see if it lets ~xapers~ find its modules. 
+  - [ ] If that works, remove ~spit-bodge~

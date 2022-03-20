@@ -4,11 +4,45 @@ packages:
   #   - spec: @
   #     prefix: /usr
   #   buildable: False
-  # :
+
+
+  # fixme: should actually package this in Spack
+  # py-xapian:
   #   externals:
-  #   - spec: @
+  #   - spec: py-xapian@
   #     prefix: /usr
   #   buildable: False
+
+  py-pybtex:
+    externals:
+    - spec:  py-pybtex@0.24.0
+      prefix: /usr
+    buildable: False
+
+  py-pycurl:
+    externals:
+    - spec: py-pycurl@7.44.1
+      prefix: /usr
+    buildable: False
+
+  poppler:
+    externals:
+    - spec: poppler@21.09.0
+      prefix: /usr
+    buildable: False
+
+  py-urwid:
+    externals:
+    - spec: py-urwid@1.3.0
+      prefix: /usr
+    buildable: False
+
+  xclip:
+    externals:
+    - spec: xclip@0.13
+      prefix: /usr
+    buildable: False
+
   librsync:
     externals:
     - spec: librsync@2.3.2

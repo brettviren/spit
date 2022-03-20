@@ -1,0 +1,68 @@
+#!/bin/bash
+
+export spit="$(dirname $(realpath "$BASH_SOURCE"))"
+export spitview="$spit/view"
+
+if [ ! -f "$spit/scope/repos.yaml" ] ; then
+    cat <<EOF > "$spit/scope/repos.yaml"
+repos:
+  - $spit/scope/repo
+  - \$spack/var/spack/repos/builtin
+EOF
+fi
+
+spit-spack () {
+    PKG_CONFIG_PATH=/usr/share/pkgconfig:/usr/lib/x86_64-linux-gnu/pkgconfig "$spit/spack/bin/spack" -C "$spit/scope" $@
+}
+
+spit-cycle () {
+    spit-spack uninstall -ya spit || echo "Above error is okay"
+    spit-spack   install     spit
+
+    if [ -d "$spitview" ] ; then
+        rm -rf "$spitview"
+    fi
+    spit-spack view add -i "$spitview" spit 2>&1 | grep -v 'Warning:'
+}
+
+spit-bodge () {
+    # do whatever ugly fix ups.
+
+    # this probably is not needed if we install Python as spack-built
+    # but until I package py-xapian we slice Python as OS
+    if [ "$(realpath /usr/local/lib)" = "$spitview/lib" ] ; then
+        for one in xapers
+        do
+            local target=/usr/local/bin/$one
+            if [ -n "$(grep sys.path.append $target)" ] ; then
+                continue
+            fi
+            sed -i 's,import sys,import sys\nsys.path.append("/usr/local/lib/python3.9/site-packages"),' "$target"
+        done
+    fi
+}
+
+if [ -z "$1" ] ; then
+    cat <<EOF
+Upgrade the packages and the view:
+
+  spit cycle
+
+Run Spack commands in the spit scope:
+
+  spit [spack] [spack command] 
+
+EOF
+    exit
+fi
+
+if [ "$1" = "cycle" -o "$1" = "spack" -o "$1" = "bodge" ] ; then
+    cmd="$1" ; shift
+else
+    cmd="spack"
+fi
+spit-$cmd $@
+
+
+    
+    
