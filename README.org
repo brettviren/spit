@@ -126,14 +126,29 @@ versions to put into ~packages.yaml~ with:
 #+end_example
 
 Focus on just the top-level dependencies one layer below the ~<name>~.
-Add each to ~packages.yaml~ with the version listed and try to install
-it:
+Add each to ~packages.yaml~ with the version listed.
+
+Actually, Spack can fill ~packages.yaml~ automatically, but some care is
+needed as it seems to not honor the /scope/ directory and will modify
+~$HOME/.spack/packages.yaml~:
+
+#+begin_example
+## writes to ~/.spack/packages.yaml, not scope/packages.yaml!
+./spit external find --no-buildable --all
+#+end_example
+
+At the very least, this can save some typing by copy-pasting between
+the two files before restoring ~$HOME/.spack/packages.yaml~ to its
+original condition.
+
+In any case, after this surgery test some package installation:
 
 #+begin_example
 ./spit install <name>
 #+end_example
 
-Check that only those packages from Spack are wanted are picked up.
+And, check the output to confirm that Spack builds only the desired
+set of packages.
 
 ** Refresh the install and view
 
@@ -143,7 +158,6 @@ Check that only those packages from Spack are wanted are picked up.
 
 * Todo
 
-- [ ] Generate ~packages.yaml~ from the Spack spec.
 - [ ] Package [[https://xapian.org/docs/install.html][xapian-bindings]] as ~py-xapian~
   - [ ] Build Python via Spack and see if it lets ~xapers~ find its modules. 
   - [ ] If that works, remove ~spit-bodge~
