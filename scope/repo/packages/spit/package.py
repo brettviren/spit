@@ -15,10 +15,11 @@ class Spit(BundlePackage):
 
     version('0.0.0')
 
+    # When adding to this list, check if package.yaml needs more.
     depends_on('python@3.9.10')
     depends_on('kitty@0.24.4')
     depends_on('herbstluftwm@0.9.4')
-    depends_on('emacs@27.2 +X toolkit=gtk')
+    depends_on('emacs@28.1 +X toolkit=gtk')
     depends_on('lemonbar@develop')
     depends_on('rofi@1.7.3')
     depends_on('weechat@3.4.1+perl+lua') # python is default

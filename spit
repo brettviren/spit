@@ -15,6 +15,21 @@ spit-spack () {
     PKG_CONFIG_PATH=/usr/share/pkgconfig:/usr/lib/x86_64-linux-gnu/pkgconfig "$spit/spack/bin/spack" -C "$spit/scope" $@
 }
 
+spit-copy () {
+    local pkg="$1" ; shift
+    if [ -z "$pkg" ] ; then
+        echo "need a package"
+        return
+    fi
+    local src="$spit/spack/var/spack/repos/builtin/packages/$pkg"
+    local tgt="$spit/scope/repo/packages/$pkg"
+    if [ -d "$tgt" ] ; then
+        echo "already there $tgt"
+        return
+    fi
+    cp -a "$src" "$tgt"
+}
+
 spit-cycle () {
     spit-spack uninstall -ya spit || echo "Above error is okay"
     spit-spack   install     spit
@@ -56,7 +71,7 @@ EOF
     exit
 fi
 
-if [ "$1" = "cycle" -o "$1" = "spack" -o "$1" = "bodge" ] ; then
+if [ "$1" = "cycle" -o "$1" = "spack" -o "$1" = "bodge" -o "$1" = "copy" ] ; then
     cmd="$1" ; shift
 else
     cmd="spack"
