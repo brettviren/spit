@@ -25,4 +25,4 @@ class Spit(BundlePackage):
     depends_on('weechat@3.5+perl+lua') # python is default
     depends_on('prmon@3.0.1')
     depends_on('py-xapers@0.8.2')
-    depends_on('py-buku@0.8.2')
+#    depends_on('py-buku@0.8.2')
