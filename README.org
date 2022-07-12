@@ -69,7 +69,17 @@ perhaps incomplete set of packages for Debian can be installed with:
 #+begin_example
 apt-get build-dep kitty herbstluftwm emacs lemonbar rofi weechat perl  
 apt-get install aspell curl dbus dbus-x11 fontconfig lua5.4
+apt-get install libzstd-dev libxcb-cursor-dev python3-setuptools librsync-dev gnutls-bin
 #+end_example
+
+Emacs ~pdf-tools~ will want:
+
+#+begin_example
+apt-get install autoconf automake gcc libpng-dev libpoppler-dev libpoppler-glib-dev libz-dev make pkg-config      
+#+end_example
+
+
+
 
 Then, to install the top-level packages from source using spit, pick
 some location writable by your user and:

@@ -15,6 +15,10 @@ spit-spack () {
     PKG_CONFIG_PATH=/usr/share/pkgconfig:/usr/lib/x86_64-linux-gnu/pkgconfig "$spit/spack/bin/spack" -C "$spit/scope" $@
 }
 
+spit-which () {
+    echo "$spit"
+}
+
 spit-copy () {
     local pkg="$1" ; shift
     if [ -z "$pkg" ] ; then
@@ -57,7 +61,7 @@ spit-bodge () {
     fi
 }
 
-if [ -z "$1" ] ; then
+spit-usage () {
     cat <<EOF
 Upgrade the packages and the view:
 
@@ -69,10 +73,15 @@ Run Spack commands in the spit scope:
 
 EOF
     exit
+}
+
+if [ -z "$1" ] ; then
+    spit-usage
 fi
 
-if [ "$1" = "cycle" -o "$1" = "spack" -o "$1" = "bodge" -o "$1" = "copy" ] ; then
-    cmd="$1" ; shift
+
+if [ -n "$(grep "^spit-$1\b" "$0")" ] ; then
+    cmd=$1 ; shift
 else
     cmd="spack"
 fi

@@ -21,6 +21,7 @@ class Kitty(Package):
 
     maintainers = ['brettviren']
 
+    version('0.25.2', sha256='0893f7c26045242919f8f2baafc5fdb427968a7dbc793771c0a04d4e86377990')
     version('0.25.0', sha256='be30160a905d26ddb2d07f52be40a56e6bf118162c447d3ea6f0e6f662b56676')
     version('0.24.4', sha256='e6619b635b5c9d6cebbba631a2175659698068ce1cd946732dc440b0f1c12ab3')
     version('0.23.1', sha256='32d3344e357da7012227d49d5031bff254bb8735f3b9edabdb46cfd13cb0e44d')
