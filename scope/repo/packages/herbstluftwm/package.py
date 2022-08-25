@@ -11,11 +11,11 @@ class Herbstluftwm(CMakePackage):
 
     # FIXME: Add a proper url for your package's homepage here.
     homepage = "http://herbstluftwm.org/"
-    url      = "https://github.com/herbstluftwm/herbstluftwm/archive/refs/tags/v0.9.4.tar.gz"
+    url      = "https://github.com/herbstluftwm/herbstluftwm/archive/refs/tags/v0.9.5.tar.gz"
 
     maintainers = ['brettviren']
 
-    
+    version('0.9.5', sha256='9dfa793768f47e2aefc0febdf7dc0773ba966c0e8261833fa08f26742bc7bf8a')
     version('0.9.4', sha256='b36e143c2ffbd820c7c00e6a1f0a74bc83fed5eb1bab35411503e68e702a18e3')
     version('0.9.3', sha256='4eeec3f32420722a1518c7b7a041790829156589f6982f019a32979879a388c1')
     

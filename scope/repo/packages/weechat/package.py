@@ -11,6 +11,7 @@ class Weechat(CMakePackage):
     homepage = "https://weechat.org"
     url = "https://weechat.org/files/src/weechat-2.9.tar.gz"
 
+    version('3.6', sha256='f095f452aca0a92d86f46db74d712a890bca130fe1f20f7fad6e515b5c3be644')
     version('3.5', sha256='aa903d12a36403e22823ff2dfc3e8fcacb1efe6519e0d56e25d3a72757d38611')
     version('3.4.1', sha256='fa361f999e9982817b11ad124a1f7ce0720439f29ce25f92be1da3d8b57a47b5')
     version('2.9', sha256='3a78063b76c42ba306eacf8f74cb8c9a260f8a61d1915d0b5d76f11d2be69a53')

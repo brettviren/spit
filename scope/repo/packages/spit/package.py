@@ -18,11 +18,11 @@ class Spit(BundlePackage):
     # When adding to this list, check if package.yaml needs more.
     depends_on('python@3.9.10')
     depends_on('kitty@0.25.2')
-    depends_on('herbstluftwm@0.9.4')
+    depends_on('herbstluftwm@0.9.5')
     depends_on('emacs@28.1 +X toolkit=gtk')
     depends_on('lemonbar@develop')
     depends_on('rofi@1.7.3')
-    depends_on('weechat@3.5+perl+lua') # python is default
+    depends_on('weechat@3.6+perl+lua') # python is default
     depends_on('prmon@3.0.1')
     depends_on('py-xapers@0.8.2')
-    depends_on('py-buku@0.8.2')
+#    depends_on('py-buku@0.8.2')
